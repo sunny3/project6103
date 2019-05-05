@@ -8,13 +8,13 @@ using namespace std;
 class Station
 {
 private:
-	string name; 
+	string name;
 	unsigned int time; //time, measured in minutes
 	unsigned int depth; //depth, measured in meters
 	unsigned int a_stream; //average stream, measured in people/minutes
 public:
 	Station(string name, unsigned int time, unsigned int depth, unsigned int a_stream) :
-		name(name), time(time), depth(depth), a_stream(a_stream) {} 
+		name(name), time(time), depth(depth), a_stream(a_stream) {}
 	void stream_change(unsigned int curr_stream) {
 		this->a_stream = curr_stream; //registration of average stream changing
 	}
@@ -149,7 +149,7 @@ public:
 		}
 		p = head;
 		while (p) {
-			if ((p->s)->get_name() == curr->get_name()) { 
+			if ((p->s)->get_name() == curr->get_name()) {
 				cout << "This station already exists\n";
 				return nullptr;
 			}
@@ -180,6 +180,7 @@ public:
 		while (p) {
 			temp = p;
 			p = p->next;
+			free(temp->s);
 			free(temp);
 		}
 	}
