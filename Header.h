@@ -180,8 +180,8 @@ public:
 		while (p) {
 			temp = p;
 			p = p->next;
-			free(temp->s);
-			free(temp);
+			delete temp->s;
+			delete temp;
 		}
 	}
 
