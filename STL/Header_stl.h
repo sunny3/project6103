@@ -118,9 +118,6 @@ public:
 			cout << "The first station must have time=0\n";
 			return nullptr;
 		}
-		/*list<shared_ptr<Station>> *ptr_metro_line = new list<shared_ptr<Station>>;
-		(*ptr_metro_line).push_front(s);
-		lst = *(ptr_metro_line); */
 		return new Metro_line(s);
 	}
 	bool add_station(const shared_ptr<Station> &s) {
@@ -147,7 +144,6 @@ public:
 
 	void del_list() {
 		lst.clear();
-		delete &lst; 
 	}
 
 	void print_metro_line() {
@@ -159,47 +155,6 @@ public:
 
 	}
 };
-
-/*list<shared_ptr<Station>> * Metro_line(const shared_ptr<Station> &s) { //return a pointer on metro_line, then to use all methods you should dereference the pointer
-	if (s->get_time() != 0) {
-		cout << "The first station must have time=0\n";
-		return nullptr;
-	}
-	list<shared_ptr<Station>> *ptr_metro_line = new list<shared_ptr<Station>>;
-	(*ptr_metro_line).push_front(s);
-	return ptr_metro_line;
-}
-
-bool add_station(list<shared_ptr<Station>> &lst, const shared_ptr<Station> &s) {
-	Station *curr = s.get();
-	int curr_time = curr->get_time();
-	//time must rise, if we go along the list. check it
-	if (lst.back()->get_time() > curr_time) {
-		cout << "Travel time from the previous station is more than from the next one - the order is violated\n";
-		return 0;
-	}
-	//no different stations with the same name are allowed. check it
-	string curr_name = curr->get_name();
-	for (auto i = lst.begin(); i != lst.end(); ++i) {
-		curr = (*i).get();
-		if (curr->get_name() == curr_name) {
-			cout << "Travel time from the previous station is more than from the next one - the order is violated\n";
-			return 0;
-		}
-	}
-	//add valid station
-	lst.push_back(s);
-	return 1;
-}
-
-void print_metro_line(const list<shared_ptr<Station>> &lst) {
-	Station *j;
-	for (auto i = lst.begin(); i != lst.end(); ++i) {
-		j = (*i).get();
-		j->print();
-	}
-
-}*/
 
 
 #endif // !Header_stl_H
