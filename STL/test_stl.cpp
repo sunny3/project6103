@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <iostream>
 #include <cassert>
-#include "pch.h"
 #include "Header_stl.h"
 #include "test_stl.h"
 
@@ -77,34 +76,15 @@ void test_metro_line() {
 	int size_of_e1 = 3;
 	shared_ptr<Station> t1(new Transfer_station("Mayakovskay", 50, 200, 50, e1, size_of_e1));
 	//create a list
-	cout << "Now we create a metro line. At first we will try with unvalid element,\nat second with valid.\nWe will print all the punctors of metro lines\n";
-	list<shared_ptr<Station>> *ptr_metro_line = Metro_line(s2); //try to create not valid list.
-	cout << "1) first punctor: " << ptr_metro_line << "\n";
-
-	//assert(!ptr_metro_line);
-
-	ptr_metro_line = Metro_line(s1); //try to create valid list.
-	cout << "2) second punctor: " << ptr_metro_line << "\n";
-
-	//assert(ptr_metro_line);
-
-	list<shared_ptr<Station>> metro_line = *ptr_metro_line;
+	Metro_line * blue_ptr = Metro_line::init(s2);
+	assert(!blue_ptr);
+	blue_ptr = Metro_line::init(s1);
+	assert(blue_ptr);
 	//add stations
-	cout << "Now we will add stations\n";
-	cout << "correct values of the test: 1)1 2)0 3)1\n";
-	cout << "real test values:\n";
-
-	cout << "1)" << add_station(metro_line, s2) << "\n";
-	cout << "2)" << add_station(metro_line, s3) << "\n";
-	cout << "3)" << add_station(metro_line, t1) << "\n";
-
-	/*assert(add_station(metro_line, s2));
-	assert(!add_station(metro_line, s3));
-	assert(add_station(metro_line, t1));
-	*/
-
+	assert(blue_ptr->add_station(s2));
+	assert(!blue_ptr->add_station(s3));
+	assert(blue_ptr->add_station(t1));
 	//print all stations
-	print_metro_line(metro_line);
-	cout << "\n";
-	delete ptr_metro_line; 
+	blue_ptr->print_metro_line();
+	delete blue_ptr;
 }
