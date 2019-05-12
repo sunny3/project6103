@@ -6,6 +6,7 @@ void test_station();
 void test_transfer_station();
 Metro_line * test_copying();
 void test_metro_line();
+//void test_destructor();
 
 #endif 
 

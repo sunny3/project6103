@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
 #include "pch.h"
-#include "Header.h"
 #include "test.h"
 
 bool Station::station_exist(string name, int time, float depth, float a_stream) {
@@ -14,6 +13,7 @@ bool Station::station_exist(string name, int time, float depth, float a_stream) 
 }
 
 void test_station() {
+	cout << "\ntest typical stations:\n";
 	Station m1 = Station("Щелковская", 0, 200, 50);
 	if (m1.station_exist("Щелковская", 0, 200, 50)) {
 		std::cout << "Station 1 exists\n"; //"Станция 1 существует"
@@ -38,7 +38,7 @@ void test_station() {
 }
 
 void test_transfer_station() {
-
+	cout << "\ntest transfer stations:\n";
 	string e1[] = { "as", "fg","hj", "bf" };
 	int size_of_e1 = 4;
 	string e2[] = { "as", "fg","hj", "bf", "gh" };
@@ -48,10 +48,15 @@ void test_transfer_station() {
 	Transfer_station *t1 = Transfer_station::init("Курская", 50, 200, 50, e1, size_of_e1);
 	Transfer_station *t2 = Transfer_station::init("Курская", 50, 200, 50, e2, size_of_e2);
 	Transfer_station *t3 = Transfer_station::init("Курская", 50, 200, 50, e3, size_of_e3);
+	Station *s4 = Transfer_station::init("Курская", 50, 200, 50, e2, size_of_e2);
 	(*t1).printT();
 	cout << "\n";
 	(*t2).printT();
 	cout << "\n";
+	delete t1;
+	delete t2;
+	delete t3;
+	delete s4;
 }
 
 Metro_line * test_copying() {
@@ -64,6 +69,7 @@ Metro_line * test_copying() {
 }
 
 void test_metro_line() {
+	cout << "\ntest metro line:\n";
 	Station m1 = Station("Щелковская", 0, 200, 50);
 	Station m2 = Station("Первомайская", 5, 200, 48);
 	Station m3 = Station("test", 3, 300, 64);
@@ -81,7 +87,12 @@ void test_metro_line() {
 	blue->add_station(&t1);
 	cout << blue->get_length() << "\n";
 	blue->print_line();
-	std::cout << "\nTest has been comleted\n";
+	cout << "\ntest copying\n";
 	Metro_line *green = test_copying();
 	green->print_line();
+	
+	delete(green);
+	cout << "\nthe end of deleting green line\n";
+	delete(blue);
+	cout << "\nthe end of deleting blue line\n";
 }

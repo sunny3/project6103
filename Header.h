@@ -50,6 +50,9 @@ public:
 		Station *c = new Station(name, time, depth, a_stream);
 		return c; //copy a station
 	}
+	virtual ~Station() {
+		//cout << "dst typical station\n";
+	}
 };
 
 class Transfer_station :
@@ -101,6 +104,9 @@ public:
 	Station * copy() {
 		Station *c = new Transfer_station(get_name(), get_time(), get_depth(), get_a_stream(), stations, length_of_arr);
 		return c;
+	}
+	~Transfer_station() {
+		//cout << "dst transfer station\n";
 	}
 };
 
